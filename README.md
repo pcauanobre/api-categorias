@@ -1,7 +1,3 @@
-# API de Categorias - README
-
-## Descrição
-
 Este repositório contém uma aplicação **Spring Boot** criada como parte de um trabalho acadêmico. O objetivo principal é fornecer uma API para gerenciamento de categorias, incluindo as operações básicas de cadastro, listagem, atualização e exclusão.
 
 ---
