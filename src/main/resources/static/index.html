@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testar API de Categorias</title>
+</head>
+<body>
+<h2>Testar API de Categorias</h2>
+
+<button onclick="listarCategorias()">Listar Categorias</button>
+<button onclick="criarCategoria()">Criar Categoria</button>
+<button onclick="atualizarCategoria()">Atualizar Categoria</button>
+<button onclick="deletarCategoria()">Deletar Categoria</button>
+
+<h3>Resposta da API:</h3>
+<pre id="resposta"></pre>
+
+<script>
+    const apiUrl = "http://localhost:8080/categorias"; // URL da API no backend
+
+    async function listarCategorias() {
+        const resposta = await fetch(apiUrl);
+        const dados = await resposta.json();
+        document.getElementById("resposta").textContent = JSON.stringify(dados, null, 2);
+    }
+
+    async function criarCategoria() {
+        const nome = prompt("Digite o nome da categoria:");
+        const descricao = prompt("Digite a descrição da categoria:");
+
+        const novaCategoria = {
+            nome: nome,
+            descricao: descricao
+        };
+
+        const resposta = await fetch('http://localhost:8080/categorias', {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(novaCategoria)
+        });
+
+        const dados = await resposta.json();
+        document.getElementById("resposta").textContent = JSON.stringify(dados, null, 2);
+    }
+
+
+    async function atualizarCategoria() {
+        const categoriaAtualizada = {
+            nome: "Categoria Atualizada",
+            descricao: "Descrição atualizada"
+        };
+
+        const id = prompt("Digite o ID da categoria a ser atualizada:");
+        const resposta = await fetch(`${apiUrl}/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(categoriaAtualizada)
+        });
+
+        const dados = await resposta.json();
+        document.getElementById("resposta").textContent = JSON.stringify(dados, null, 2);
+    }
+
+    async function deletarCategoria() {
+        const id = prompt("Digite o ID da categoria a ser deletada:");
+        const resposta = await fetch(`${apiUrl}/${id}`, {
+            method: "DELETE"
+        });
+
+        if (resposta.ok) {
+            document.getElementById("resposta").textContent = `Categoria ${id} deletada com sucesso!`;
+        } else {
+            document.getElementById("resposta").textContent = `Erro ao deletar categoria ${id}`;
+        }
+    }
+</script>
+</body>
+</html>
