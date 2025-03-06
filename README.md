@@ -13,11 +13,6 @@ Este repositório contém uma aplicação **Spring Boot** criada como parte de u
 - **pom.xml**  
   Arquivo de configuração do Maven, responsável pelas dependências e plugins do projeto.
 
-- **mvnw** e **mvnw.cmd**  
-  Scripts que permitem executar o Maven mesmo sem instalá-lo localmente.
-
-- **HELP.md**  
-  Arquivo que pode conter instruções adicionais ou anotações sobre o projeto.
 
 ---
 
